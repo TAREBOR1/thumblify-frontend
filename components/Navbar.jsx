@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "motion/react";
-import { navlinks } from "@/data/navlinks";
-import { INavLink } from "@/types";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -26,7 +24,7 @@ export default function Navbar() {
     if (!name) return ''; // handle empty strings
     return name[0].toUpperCase();
 }
-
+console.log(user,'okkkk')
     return (
         <>
             <motion.nav className="fixed top-0 z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-32 backdrop-blur"

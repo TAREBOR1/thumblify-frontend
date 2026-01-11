@@ -1,7 +1,7 @@
 "use client"
 
 import { login, logout, register, verify } from "@/services/auth"
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient, } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 
 export const useAuth = () => {
