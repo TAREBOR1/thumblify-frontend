@@ -1,3 +1,5 @@
+"use client"
+
 import { yt_html } from "@/assets/assets";
 import { useSearchParams } from "next/navigation";
 
