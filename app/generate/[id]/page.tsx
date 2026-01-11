@@ -18,7 +18,7 @@ export default function page(){
      const{isAuthenticated}=useAuth()
      const pathname=usePathname()
 
-     
+
     const [title,setTitle]=useState('')
     const [additionalDetails,setAdditionalDetails]=useState('')
     const [thumbnail,setThumbnail]=useState<IThumbnail|null>(null)
@@ -97,10 +97,6 @@ export default function page(){
         </div>
      </div>
 
-     {/* BUTTON */}
-    {!generateID && (
-        <button onClick={handleGenerate} className="text-[15px] w-full py-3.5 rounded-xl font-medium bg-linear-to-b from-pink-500 to-pink-600 hover:from-pink-700 disabled:cursor-not-allowed transition-colors" disabled={loading}>{loading?"Generating...":"Generate Thumbnail"}</button>
-    )}
              </div>
        </div>
        {/* RIGHT PANEL */}
