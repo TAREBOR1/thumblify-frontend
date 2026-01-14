@@ -21,7 +21,7 @@ export default function Navbar() {
   };
 
    const formatName = (name: any): string => {
-    if (!name) return ''; // handle empty strings
+    if (!name) return ''
     return name[0].toUpperCase();
 }
 console.log(user,'okkkk')

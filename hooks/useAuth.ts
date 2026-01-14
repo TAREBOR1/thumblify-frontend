@@ -16,7 +16,6 @@ export const useAuth = () => {
   const registerMutation = useMutation({
     mutationFn: register,
     onSuccess: (data) => {
-        console.log(data,'make i see')
         toast.success(data.message)
       queryClient.invalidateQueries({ queryKey: ["auth"] })
     }

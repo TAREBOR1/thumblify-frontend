@@ -35,7 +35,7 @@
         ".next/types/**/*.ts",
         ".next/dev/types/**/*.ts",
         "**/*.mts"
-, "components/Navbar.jsx", "hooks/useAuth.js"    ],
+, "components/Navbar.tsx", "hooks/useAuth.ts"    ],
     "exclude": [
         "node_modules"
     ]
