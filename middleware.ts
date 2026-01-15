@@ -2,8 +2,9 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export async function middleware(req: NextRequest) {
+     console.log('Middleware cookie:', req.headers.get('sessionId'))
   const cookie = req.headers.get('sessionId') || ''
-  console.log('Middleware cookie:', req.headers.get('sessionId'))
+ 
 
   const protectedRoutes = ['/dashboard', '/my-generate']
   const pathname = req.nextUrl.pathname
