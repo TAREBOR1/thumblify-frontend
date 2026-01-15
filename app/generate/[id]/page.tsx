@@ -116,13 +116,13 @@ export default function page(){
                         </div>
                         
                         {/* RIGHT PANEL - Hidden on mobile, shown on medium and above */}
-                        <div className="hidden md:block">
-                            <div className="p-4 sm:p-5 md:p-6 rounded-2xl bg-white/8 border border-white/10 shadow-xl h-full">
-                                <h2 className="text-lg font-semibold text-zinc-100 mb-4">Preview</h2>
-                                <PreviewPanel thumbnail={thumbnail} isLoading={loading} aspectRatio={aspectRatios}/>
-                            </div>
-                        </div>
-                    </div>
+                         <div className="mt-6 lg:mt-0">
+        <div className="p-4 sm:p-5 md:p-6 rounded-2xl bg-white/8 border border-white/10 shadow-xl">
+            <h2 className="text-lg font-semibold text-zinc-100 mb-4">Preview</h2>
+            <PreviewPanel thumbnail={thumbnail} isLoading={loading} aspectRatio={aspectRatios}/>
+        </div>
+    </div>
+</div>
                 </main>
             </div>
         </>
