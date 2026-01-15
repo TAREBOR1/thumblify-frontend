@@ -1,31 +1,28 @@
+// middleware.ts in your project root
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export async function middleware(req: NextRequest) {
-     console.log('Middleware cookie:', req.headers.get('cookie'))
-  const cookie = req.headers.get('cookie') || ''
- 
-
-  const protectedRoutes = ['/dashboard', '/my-generate']
-  const pathname = req.nextUrl.pathname
-
-  if (protectedRoutes.some(route => pathname.startsWith(route))) {
-    const res = await fetch(
-      'https://thumblify-backend.vercel.app/api/auth/verify',
-      {
-        headers: { cookie },
-        credentials: 'include',
-      }
-    )
-
-    if (res.status !== 200) {
-      return NextResponse.redirect(new URL('/login', req.url))
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get('sessionId') // or your session cookie name
+  console.log('middleware cookie:',token)
+  
+  // Protect /my-generate route
+  if (request.nextUrl.pathname.startsWith('/my-generate')) {
+    if (!token) {
+      return NextResponse.redirect(new URL('/login', request.url))
     }
   }
-
+  
+  // If logged in, redirect from /login to home
+  if (request.nextUrl.pathname === '/login') {
+    if (token) {
+      return NextResponse.redirect(new URL('/', request.url))
+    }
+  }
+  
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/my-generate/:path*'],
+  matcher: ['/my-generate/:path*', '/login']
 }
