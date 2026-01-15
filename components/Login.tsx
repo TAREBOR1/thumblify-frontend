@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 export default function Login() {
 
     const [state, setState] = useState("login")
-    const {login,register,user,isLoading}=useAuth()
+    const {login,register,user}=useAuth()
     const router=useRouter()
 
     const [formData, setFormData] =useState({
@@ -31,35 +31,11 @@ export default function Login() {
         
 
     }
-  // FIXED: Only redirect if auth check is complete AND user exists
-    useEffect(() => {
-        // Wait for auth verification to complete
-        if (!isLoading  && user) {
-            // Get the previous page from sessionStorage or redirect to home
-            const previousPage = sessionStorage.getItem('prevPage') || '/'
-            router.push(previousPage)
-        }
-    }, [user, isLoading, router])
-
-    // Save current page before leaving
-    useEffect(() => {
-        sessionStorage.setItem('prevPage', window.location.pathname)
-    }, [])
-
-    // Show loading while checking auth
-    if (isLoading ) {
-        return (
-            <div className="min-h-screen justify-center items-center flex">
-                <SoftBackDrop/>
-                <div className="text-white">Loading...</div>
-            </div>
-        )
-    }
-
-    // Don't show login form if already authenticated (will redirect)
-    if (user) {
-        return null
-    }
+useEffect(()=>{
+if(user){
+    router.push('/')  
+}
+},[user])
     return (
         <div className="min-h-screen justify-center items-center flex">
             <form

@@ -21,15 +21,13 @@ const Page = () => {
     }
     const [thumbnail,setThumbnail]=useState<IThumbnail[]>([])
     const [loading,setLoading]=useState(false)
-    // In your my-generate page, modify the redirect useEffect:
+
 useEffect(() => {
-    // Only redirect if auth check is complete AND user is not authenticated
-    if (!isLoading  && !isAuthenticated) {
-        // Save the current page before redirecting to login
-        sessionStorage.setItem('prevPage', '/my-generate')
-        router.push('/login')
-    }
-}, [isAuthenticated, isLoading, router])
+  if (!isLoading && !isAuthenticated) {
+    router.push('/login')
+  }
+}, [isAuthenticated, isLoading])
+
  const fetchThumbnail=async()=>{
      try {
     setLoading(true)
@@ -63,11 +61,12 @@ useEffect(() => {
    setThumbnail(thumbnail.filter((t)=>t._id!==id))
    console.log(id)
  }
- useEffect(()=>{
-if(isAuthenticated){
-   fetchThumbnail() 
-}
-},[isAuthenticated])
+useEffect(() => {
+  if (!isLoading && isAuthenticated) {
+    fetchThumbnail()
+  }
+}, [isAuthenticated, isLoading])
+
  useEffect(()=>{
 if(!isAuthenticated){
     router.push('/login')  
