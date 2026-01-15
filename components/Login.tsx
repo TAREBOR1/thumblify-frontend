@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 export default function Login() {
 
     const [state, setState] = useState("login")
-    const {login,register,user}=useAuth()
+    const {login,register,isAuthenticated,isLoading}=useAuth()
     const router=useRouter()
 
     const [formData, setFormData] =useState({
@@ -31,11 +31,12 @@ export default function Login() {
         
 
     }
-useEffect(()=>{
-if(user){
-    router.push('/')  
-}
-},[user])
+if (isLoading) return null
+
+  if (isAuthenticated) {
+    router.replace('/')
+    return null
+  }
     return (
         <div className="min-h-screen justify-center items-center flex">
             <form
