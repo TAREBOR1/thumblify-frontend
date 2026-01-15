@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function Navbar() {
-     const {user,isAuthenticated,logout}=useAuth()
+     const {user,isAuthenticated,logout,isLoading}=useAuth()
     const [isOpen, setIsOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const router= useRouter()
@@ -40,38 +40,45 @@ console.log(user,'okkkk')
                 <div className="hidden md:flex items-center gap-8 transition duration-500">
                     <Link href={"/"} className="hover:text-pink-500 transition">Home</Link>
                     <Link href={"/generate"} className="hover:text-pink-500 transition">Generate</Link>
- {isAuthenticated ? <Link  href={"/my-generate"} >My Generation</Link>:<Link  href="#" >About</Link>}
+{!isLoading && (
+  isAuthenticated 
+    ? <Link href="/my-generate">My Generation</Link>
+    : <Link href="#">About</Link>
+)}
                     <Link href={"#"} className="hover:text-pink-500 transition">Contact Us</Link>
                 </div>
              <div className="flex items-center gap-2">
-      {isAuthenticated ? (
-        <div className="relative">
-          <button
-            className="rounded-full w-8 h-8 bg-white/20 border-2 border-white/10"
-            onClick={() => setOpen(!open)}
-          >
-            {formatName(user?.user?.name)}
-          </button>
+     {!isLoading && (
+  isAuthenticated ? (
+    <div className="relative">
+      <button
+        className="rounded-full w-8 h-8 bg-white/20 border-2 border-white/10"
+        onClick={() => setOpen(!open)}
+      >
+        {formatName(user?.user?.name)}
+      </button>
 
-          {open && (
-            <div className="absolute top-10 right-0 pt-2">
-              <button
-               onClick={handleLogout}
-                className="bg-white/20 border-2 border-white/10 px-5 py-1.5 rounded w-full text-left"
-              >
-                Logout
-              </button>
-            </div>
-          )}
+      {open && (
+        <div className="absolute top-10 right-0 pt-2">
+          <button
+            onClick={handleLogout}
+            className="bg-white/20 border-2 border-white/10 px-5 py-1.5 rounded w-full text-left"
+          >
+            Logout
+          </button>
         </div>
-      ) : (
-        <button
-          className="hidden md:block px-6 py-2.5 bg-pink-600 hover:bg-pink-700 active:scale-95 transition-all rounded-full"
-          onClick={() => router.push("/login")}
-        >
-          Get started
-        </button>
       )}
+    </div>
+  ) : (
+    <button
+      className="hidden md:block px-6 py-2.5 bg-pink-600 hover:bg-pink-700 active:scale-95 transition-all rounded-full"
+      onClick={() => router.push("/login")}
+    >
+      Get started
+    </button>
+  )
+)}
+
        <button onClick={() => setIsOpen(true)} className="md:hidden">
                     <MenuIcon size={26} className="active:scale-90 transition" />
                 </button>
