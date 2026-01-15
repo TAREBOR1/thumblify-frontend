@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 const Page = () => {
 
     const router=useRouter()
-    const{isAuthenticated}=useAuth()
+    const{isAuthenticated,isLoading}=useAuth()
     const aspectRatioClass: Record<string,string>={
          '16:9':"aspect-video",
         "1:1":'aspect-square',
@@ -21,6 +21,15 @@ const Page = () => {
     }
     const [thumbnail,setThumbnail]=useState<IThumbnail[]>([])
     const [loading,setLoading]=useState(false)
+    // In your my-generate page, modify the redirect useEffect:
+useEffect(() => {
+    // Only redirect if auth check is complete AND user is not authenticated
+    if (!isLoading  && !isAuthenticated) {
+        // Save the current page before redirecting to login
+        sessionStorage.setItem('prevPage', '/my-generate')
+        router.push('/login')
+    }
+}, [isAuthenticated, isLoading, router])
  const fetchThumbnail=async()=>{
      try {
     setLoading(true)
