@@ -22,11 +22,8 @@ const Page = () => {
     const [thumbnail,setThumbnail]=useState<IThumbnail[]>([])
     const [loading,setLoading]=useState(false)
 
-useEffect(() => {
-  if (!isLoading && !isAuthenticated) {
-    router.push('/login')
-  }
-}, [isAuthenticated, isLoading])
+    
+
 
  const fetchThumbnail=async()=>{
      try {
@@ -67,11 +64,6 @@ useEffect(() => {
   }
 }, [isAuthenticated, isLoading])
 
- useEffect(()=>{
-if(!isAuthenticated){
-    router.push('/login')  
-}
-},[isAuthenticated])
     return ( <>
       <SoftBackDrop/>
       <div className="mt-32 min-h-screen px-6 md:px-16 lg:px-24 xl:px-32">
