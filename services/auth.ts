@@ -18,7 +18,7 @@ export interface authResponse{
   user:User
 }
 
-// Input types
+// Input types 
 export interface RegisterInput {
   name: string;
   email: string;

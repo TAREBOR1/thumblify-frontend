@@ -8,6 +8,7 @@ import SoftBackDrop from "@/components/SoftBackDrop";
 import StyleSelector from "@/components/StyleSelector";
 import api from "@/config/api";
 import { useAuth } from "@/hooks/useAuth";
+import { useThumbnail } from "@/hooks/useThumbnail";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -25,6 +26,8 @@ export default function page(){
     const [style, setStyle] = useState<ThumbnailStyle>("Bold & Graphic")
     const [styleDropDownMenu, setStyleDropDownMenu] = useState(false)
 
+    const {generateThumbnail,thumbnails,isLoading}=useThumbnail()
+
     const handleGenerate = async() => {
         if(!isAuthenticated) {
             return toast.error("Please Login to Generate Thumbnails")
@@ -35,16 +38,21 @@ export default function page(){
         setLoading(true)
         const apiPayload = {
             title,
-            prompt: additionalDetails,
+            prompt_used: additionalDetails,
             color_scheme: colorScheme,
-            aspect_rato: aspectRatios,
+            aspect_ratio: aspectRatios,
             text_overlay: true
         }
-        const { data } = await api.post('/api/thumbnail/generate', apiPayload)
-        if(data.thumbnail){
-            router.push(`/generate/${data.thumbnail._id}`)
-            toast.success(data.message)
-        }
+        try {
+    const data = await generateThumbnail.mutateAsync(apiPayload);
+    if (data.thumbnail) {
+      setThumbnail(data.thumbnail); // update preview panel
+      router.push(`/generate/${data.thumbnail._id}`);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
     }
 
     return (

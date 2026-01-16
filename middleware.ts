@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-  const token = request.cookies.get('sessionId') // or your session cookie name
+  const token = request.cookies.get('sessionId')
   
 
   if (request.nextUrl.pathname === '/login') {
@@ -11,10 +11,15 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/', request.url))
     }
   }
+  if(request.nextUrl.pathname==='/my-generate'||request.nextUrl.pathname==='/generate' ){
+    if(!token){
+      return NextResponse.redirect(new URL('/login',request.url))
+    }
+  }
   
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: [ '/login']
+  matcher: [ '/login','/my-generate','/generate']
 }
