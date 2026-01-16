@@ -11,7 +11,7 @@ const PreviewContent = () => {
     // Check if parameters exist
     if (!thumbnail_url || !title) {
         return (
-            <div className="fixed inset-0 z-100 bg-black flex items-center justify-center">
+            <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center">
                 <div className="text-white text-center">
                     <h2 className="text-2xl font-bold mb-2">Missing Parameters</h2>
                     <p className="text-gray-400">Thumbnail URL and title are required.</p>
