@@ -1,6 +1,6 @@
 {
-    "name": "pixels",
-    "short_name": "pixels",
+    "name": "thumblify",
+    "short_name": "thumblify",
     "icons": [
         {
             "src": "/web-app-manifest-192x192.png",

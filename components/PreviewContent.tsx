@@ -27,7 +27,6 @@ const PreviewContent = () => {
     return ( 
         <>
             <div className="fixed inset-0 z-100 bg-black">
-                <h1>hello preview</h1>
                 <iframe srcDoc={new_html} width="100%" height="100%" allowFullScreen></iframe>
             </div>
         </> 
