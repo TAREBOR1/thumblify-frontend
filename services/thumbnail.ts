@@ -25,6 +25,7 @@ import api from "@/config/api"
 // THUMBNAIL TYPES
 // ---------------------------
 export interface ThumbnailInput {
+    style:string;
     title: string;
     aspect_ratio: string;
     color_scheme: string;

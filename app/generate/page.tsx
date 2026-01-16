@@ -43,7 +43,8 @@ export default function page(){
             prompt_used: additionalDetails,
             color_scheme: colorScheme,
             aspect_ratio: aspectRatios,
-            text_overlay: true
+            text_overlay: true,
+            style
         }
 
         console.log(apiPayload,'this is paylaod')
