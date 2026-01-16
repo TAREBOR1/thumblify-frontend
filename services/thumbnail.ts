@@ -3,14 +3,14 @@ import api from "@/config/api"
 // ---------------------------
 // STRICT TYPE UNIONS
 // ---------------------------
-export type ThumbnailStyle = "Bold & Graphic" | "Minimalist" | "Photorealistic" | "Illustrated" | "Tech/Futuristic";
-export type AspectRatio = "16:9" | "1:1" | "9:16";
-export type ColorScheme = "vibrant" | "sunset" | "ocean" | "forest" | "purple" | "monochrome" | "neon" | "pastel";
+ type ThumbnailStyle = "Bold & Graphic" | "Minimalist" | "Photorealistic" | "Illustrated" | "Tech/Futuristic";
+ type AspectRatio = "16:9" | "1:1" | "9:16";
+ type ColorScheme = "vibrant" | "sunset" | "ocean" | "forest" | "purple" | "monochrome" | "neon" | "pastel";
 
 // ---------------------------
 // COLOR SCHEMES DATA
 // ---------------------------
-export const colorSchemes: Record<ColorScheme, { name: string; colors: string[] }> = {
+ const colorSchemes: Record<ColorScheme, { name: string; colors: string[] }> = {
     vibrant: { name: "Vibrant", colors: ["#FF6B6B", "#4ECDC4", "#45B7D1"] },
     sunset: { name: "Sunset", colors: ["#FF8C42", "#FF3C38", "#A23B72"] },
     ocean: { name: "Ocean", colors: ["#0077B6", "#00B4D8", "#90E0EF"] },
