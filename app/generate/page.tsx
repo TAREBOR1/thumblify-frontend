@@ -45,6 +45,8 @@ export default function page(){
             aspect_ratio: aspectRatios,
             text_overlay: true
         }
+
+        console.log(apiPayload,'this is paylaod')
         try {
     const data = await generateThumbnail.mutateAsync(apiPayload);
     console.log(data,'thumnail data')
