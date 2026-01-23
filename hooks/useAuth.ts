@@ -32,11 +32,6 @@ export const useAuth = () => {
 
   const logoutMutation = useMutation({
     mutationFn: logout,
-    onSuccess: (data) => {
-        queryClient.setQueryData(["auth"], null);
-        toast.success(data.message)
-      queryClient.invalidateQueries({ queryKey: ["auth"] })
-    }
   })
 
   return {
