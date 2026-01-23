@@ -32,6 +32,9 @@ export const useAuth = () => {
 
   const logoutMutation = useMutation({
     mutationFn: logout,
+    onSuccess:()=>{
+     queryClient.setQueryData(["auth"], null);
+    }
   })
 
   return {
