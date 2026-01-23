@@ -92,9 +92,10 @@ const saveToken = (token: string) => {
 };
 
 // Helper to remove token
-const removeToken = () => {
-  localStorage.removeItem("token");
-};
+
+// const removeToken = () => {
+//   localStorage.removeItem("token");
+// };
 
 // API calls
 
@@ -122,6 +123,6 @@ export const verify = async (): Promise<authUser | null> => {
 };
 
 export const logout = async (): Promise<void> => {
- removeToken()
+  localStorage.removeItem("token");
 };
 
