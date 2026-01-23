@@ -112,22 +112,16 @@ export const login = async (data: LoginInput): Promise<authResponse> => {
   return res.data;
 };
 
-export const logout = async (): Promise<{ success: boolean; message: string }> => {
-  removeToken(); // remove JWT from localStorage
-  // optional call to backend if you want to invalidate tokens server-side
-  await api.post("/api/auth/logout");
-  return { success: true, message: "Logged out successfully" };
-};
-
 export const verify = async (): Promise<authUser | null> => {
-  const token = localStorage.getItem("token");
-  if (!token) return null;
-
-  const res = await api.get("/api/auth/verify", {
-    headers: {
-      Authorization: `Bearer ${token}`, // attach token in header
-    },
-  });
-
-  return res.data;
+  try {
+    const res = await api.get("/api/auth/verify");
+    return res.data;
+  } catch {
+    return null;
+  }
 };
+
+export const logout = async (): Promise<void> => {
+ removeToken()
+};
+
