@@ -13,8 +13,8 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
     const router= useRouter()
 
-     const handleLogout = async() => {
-     await logout.mutateAsync()
+     const handleLogout =() => {
+      logout.mutate()
    
   
     setOpen(false);
