@@ -15,7 +15,7 @@ export default function Navbar() {
 
      const handleLogout =() => {
       logout.mutate()
-   
+   console.log('i press logout')
   
     setOpen(false);
   };
