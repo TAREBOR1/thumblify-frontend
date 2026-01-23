@@ -93,7 +93,7 @@ console.log(user,'okkkk')
                     {isAuthenticated ? <Link onClick={() => setIsOpen(false)} href={"/my-generate"} >My Generation</Link>: <Link onClick={() => setIsOpen(false)} href={"#"} >About</Link>}
                     <Link onClick={() => setIsOpen(false)} href={"#"} >Contact Us</Link>
     
-                    {isAuthenticated? <button onClick={() =>{ setIsOpen(false); logout}} > Logout</button> :<Link onClick={() => setIsOpen(false)} href={"/login"} >Login</Link>}
+                    {isAuthenticated? <button onClick={() =>{ setIsOpen(false); handleLogout}} > Logout</button> :<Link onClick={() => setIsOpen(false)} href={"/login"} >Login</Link>}
                 <button onClick={() => setIsOpen(false)} className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-pink-600 hover:bg-pink-700 transition text-white rounded-md flex">
                     <XIcon />
                 </button>
